@@ -35,16 +35,15 @@ require_once dirname(__FILE__).'/../page_header.php';
 	<div style="position: relative; color: #F0F0F0; height: 100%;">
 		<!-- Help & Support -->
 		<div style="position: absolute; top: 0px; right: 10px;">
-			<a class="highlight" href="http://www.zabbix.com/documentation"><?php echo _('Help'); ?></a>
-			&nbsp;|&nbsp;
-			<a class="highlight" href="https://support.zabbix.com"><?php echo _('Support'); ?></a>
+		<!--	<a class="highlight" href="http://www.zabbix.com/documentation"><?php echo _('Help'); ?></a>
+			&nbsp;|&nbsp;-->
+			<a class="highlight" href="http://www.naukanet.ru/about/contacts.php"><?php echo _('Поддержка'); ?></a>
 		</div>
 		<!-- Copyright -->
 		<div style="float: left; width: 250px; height: 100%;">
 			<div style="position: absolute; top: 39%; left: 2%;" class="loginLogo"></div>
 			<div style="position: absolute; bottom: 2px;">
 				<span class="bold textwhite" style="margin: 0 0 4px 4px; font-size: 0.9em; opacity: 0.7;">
-					<?php echo _s('Zabbix %s Copyright 2001-2012 by Zabbix SIA', ZABBIX_VERSION); ?>
 				</span>
 			</div>
 		</div>
@@ -58,23 +57,23 @@ require_once dirname(__FILE__).'/../page_header.php';
 					</div>
 				</li>
 				<li style="margin-top: 10px; padding-top: 1px; height: 22px; width: 265px; background-image: url(images/general/login/username_pass_field.png); background-repeat: no-repeat; white-space: nowrap;" >
-					<div class="bold" style="display: inline-block; zoom: 1; *display: inline; *margin-right: 2px; font-size: 1.1em; width: 70px; padding-left: 10px; line-height: 22px;"><?php echo _('Username'); ?></div>
+					<div class="bold" style="display: inline-block; zoom: 1; *display: inline; *margin-right: 2px; font-size: 9px; width: 70px; padding-left: 6px; line-height: 22px;"><?php echo _('Пользователь'); ?></div>
 					<input type="text" id="name" name="name" class="input bold transparent" style="color: #5f5f5f; height: 16px; line-height: 16px; width: 170px;" />
 				</li>
 				<li style="margin-top: 10px; padding-top: 1px; height: 22px; width: 265px; background-image: url(images/general/login/username_pass_field.png); background-repeat: no-repeat; white-space: nowrap;" >
-					<div class="bold" style="display: inline-block; zoom: 1; *display: inline; *margin-right: 2px; font-size: 1.1em; width: 70px; padding-left: 10px; line-height: 22px;"><?php echo _('Password'); ?></div>
+					<div class="bold" style="display: inline-block; zoom: 1; *display: inline; *margin-right: 2px; font-size: 9px; width: 70px; padding-left: 6px; line-height: 22px;"><?php echo _('Пароль'); ?></div>
 					<input type="password" id="password" name="password" class="input bold transparent" style="color: #5f5f5f; height: 16px; line-height: 16px; width: 170px;" />
 				</li>
 				<li style="margin-top: 8px; margin-left: 64px;">
 					<input type="checkbox" id="autologin" name="autologin" value="1" <?php echo (get_request('autologin', 1) == 1) ? 'checked="checked"' : ''; ?> />
 					<label for="autologin" class="bold" style="line-height: 20px; vertical-align: top;">
-						<?php echo _('Remember me for 30 days'); ?>
+						<?php echo _('Оставаться в системе 30 дней'); ?>
 					</label>
 					<div style="height: 8px;"></div>
-					<input type="submit" class="input" name="enter" id="enter" value="<?php echo _('Sign in'); ?>" />
+					<input type="submit" class="input" name="enter" id="enter" value="<?php echo _('Войти'); ?>" />
 					<?php if (CWebUser::$data['userid'] > 0) { ?>
 						<span style="margin-left: 14px;">
-							<a class="highlight underline" href="dashboard.php"><?php echo _('Login as Guest'); ?></a>
+							<a class="highlight underline" href="dashboard.php"><?php echo _('Войти как Гость'); ?></a>
 						</span>
 					<?php } ?>
 				</li>

@@ -61,7 +61,7 @@ if ($config['authentication_type'] == ZBX_AUTH_HTTP) {
 }
 
 // login via form
-if (isset($_REQUEST['enter']) && $_REQUEST['enter'] == _('Sign in')) {
+if (isset($_REQUEST['enter']) && $_REQUEST['enter'] == _('Войти')) {
 	// try to login
 	if (CWebUser::login(get_request('name', ''), get_request('password', ''))) {
 		// save remember login preference

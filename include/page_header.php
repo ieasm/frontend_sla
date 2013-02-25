@@ -254,7 +254,7 @@ if (!defined('ZBX_PAGE_NO_MENU')) {
 						" showHideByName('zbx_gebug_info', this.state);";
 			$debug->setAttribute('onclick', 'javascript: '.$d_script);
 			array_push($page_header_r_col, $debug, '|');
-		array_push($page_header_r_col, new CLink(_('Добавить канал'), 'http://oldsla.naukanet.ru:8080/addchannel', 'small_font', null, 'nosid'), '|');
+		array_push($page_header_r_col, new CLink(_('Добавить услугу'), 'http://sladb.naukanet.ru:8080/addchannel', 'small_font', null, 'nosid'), '|');
 		}
 
 		// it is not possible to logout from HTTP authentication
