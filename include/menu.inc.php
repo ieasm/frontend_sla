@@ -84,6 +84,13 @@ $ZBX_MENU = array(
 				'sub_pages' => array('report3.php', 'chart5.php')
 			),
 			array(
+				'url' => 'telephony.php',
+				'label' => _('Telephony'),
+				'force_disable_all_nodes' => true,
+				'sub_pages' => array('report3.php', 'chart5.php'),
+				'user_type' => USER_TYPE_TELEPHONY
+			),			
+			array(
 				'url' => 'chart3.php'
 			),
 			array(

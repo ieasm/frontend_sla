@@ -38,7 +38,8 @@ function user_type2str($user_type = null) {
 	$user_types = array(
 		USER_TYPE_ZABBIX_USER => _('Zabbix User'),
 		USER_TYPE_ZABBIX_ADMIN => _('Zabbix Admin'),
-		USER_TYPE_SUPER_ADMIN => _('Zabbix Super Admin')
+		USER_TYPE_SUPER_ADMIN => _('Zabbix Super Admin'),
+		USER_TYPE_TELEPHONY => _('Zabbix Telefon')
 	);
 	if (is_null($user_type)) {
 		return $user_types;

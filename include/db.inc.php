@@ -943,25 +943,52 @@ function zbx_db_search($table, $options, &$sql_parts) {
 			continue;
 		}
 
-		// escaping parameter that is about to be used in LIKE statement
-		$pattern = str_replace("!", "!!", $pattern);
-		$pattern = str_replace("%", "!%", $pattern);
-		$pattern = str_replace("_", "!_", $pattern);
+		if (!is_array($pattern)){
 
-		if (empty($options['searchWildcardsEnabled'])) {
-			$search[$field] =
-				' UPPER('.$tableShort.'.'.$field.') '.
-				$exclude.' LIKE '.
-				zbx_dbstr($start.zbx_strtoupper($pattern).'%').
-				" ESCAPE '!'";
+			// escaping parameter that is about to be used in LIKE statement
+			$pattern = str_replace("!", "!!", $pattern);
+			$pattern = str_replace("%", "!%", $pattern);
+			$pattern = str_replace("_", "!_", $pattern);
+
+			if (empty($options['searchWildcardsEnabled'])) {
+				$search[$field] =
+					' UPPER('.$tableShort.'.'.$field.') '.
+					$exclude.' LIKE '.
+					zbx_dbstr($start.zbx_strtoupper($pattern).'%').
+					" ESCAPE '!'";
+			}
+			else {
+				$pattern = str_replace("*", "%", $pattern);
+				$search[$field] =
+					' UPPER('.$tableShort.'.'.$field.') '.
+					$exclude.' LIKE '.
+					zbx_dbstr(zbx_strtoupper($pattern)).
+					" ESCAPE '!'";
+			}
 		}
 		else {
-			$pattern = str_replace("*", "%", $pattern);
-			$search[$field] =
-				' UPPER('.$tableShort.'.'.$field.') '.
-				$exclude.' LIKE '.
-				zbx_dbstr(zbx_strtoupper($pattern)).
-				" ESCAPE '!'";
+			foreach ($pattern as $value) {
+				// escaping parameter that is about to be used in LIKE statement
+				$value = str_replace("!", "!!", $value);
+				$value = str_replace("%", "!%", $value);
+				$value = str_replace("_", "!_", $value);
+
+				if (empty($options['searchWildcardsEnabled'])) {
+					array_push($search,
+						' UPPER('.$tableShort.'.'.$field.') '.
+						$exclude.' LIKE '.
+						zbx_dbstr($start.zbx_strtoupper($value).'%').
+						" ESCAPE '!'");
+				}
+				else {
+					$value = str_replace("*", "%", $value);
+					array_push($search,
+						' UPPER('.$tableShort.'.'.$field.') '.
+						$exclude.' LIKE '.
+						zbx_dbstr(zbx_strtoupper($value)).
+						" ESCAPE '!'");
+				}
+			}
 		}
 	}
 

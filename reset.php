@@ -11,9 +11,9 @@ $servicename = $_POST['servicename'];
 $first_date = $_POST['first_date'];
 $second_date = $_POST['second_date'];
 header('Content-Type: text/html; charset=UTF-8');
-$host='127.0.0.1';
+$host='172.16.220.18';
 $database='zabbix';
-$user='root';
+$user='zabbix';
 $pswd='naukazabb1xslanet';
 
 $link = mysql_connect($host , $user , $pswd) or die ("Не могу соединиться с сервером");

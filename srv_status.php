@@ -116,28 +116,37 @@ else {
 		'selectTrigger' => array('description', 'triggerid', 'expression'),
 		'preservekeys' => true,
 		'sortfield' => 'sortorder',
-		'sortorder' => ZBX_SORT_UP
+		'sortorder' => ZBX_SORT_UP,
+		'search'	=>  array('name' => array('(AXE)', '(si2000)', '(MVTS)', 'Направления', 'Операторы', 'Телефония ООО "Наука-Связь"')),
+		'excludeSearch' => true
 	));
 
+
+	$serviceids = array_keys($services);
 	// expand trigger descriptions
+	
 	$triggers = zbx_objectValues($services, 'trigger');
 
-	$triggers = CTriggerHelper::batchExpandDescription($triggers);
-
+	$triggers = CTriggerHelper::batchExpandDescription($triggers); //array [id:[triggerid:id, description:description, expression:expression],...]
+	
+	//eta huinya dobavlyaet v massiv ewe odin klu4 'trigger':triggerid
 	foreach ($services as &$service) {
 		if ($service['trigger']) {
 			$service['trigger'] = $triggers[$service['trigger']['triggerid']];
 		}
 	}
 	unset($service);
+	
 
 	// fetch sla
 	$slaData = API::Service()->getSla(array(
 		'intervals' => array(array(
 			'from' => $period_start,
 			'to' => $period_end
-		))
+		)),
+	'serviceids' => $serviceids
 	));
+	
 
 	// expand problem trigger descriptions
 	foreach ($slaData as &$serviceSla) {
@@ -147,6 +156,7 @@ else {
 		unset($problemTrigger);
 	}
 	unset($serviceSla);
+	
 
 	$treeData = array();
 	createServiceMonitoringTree($services, $slaData, $period, $treeData);
@@ -160,6 +170,7 @@ else {
 			'sla2' => nbsp(_('SLA').' / '._('Acceptable SLA'))
 		)
 	);
+
 
 	if ($tree) {
 		// creates form for choosing a preset interval
@@ -184,6 +195,8 @@ else {
 	}
 	else {
 		error(_('Cannot format Tree. Check logic structure in service links.'));
+
 	}
 }
+
 include_once('include/page_footer.php');

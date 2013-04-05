@@ -166,6 +166,8 @@ class CTree {
 		return $tr;
 	}
 
+
+//nazna4aet 'Level' kajdoi zapisi v strukture, 4em glubje tem level bolwe nu i ewe po huine. vizivaetsya v construct
 	private function countDepth() {
 		foreach ($this->tree as $id => $rows) {
 			if ($rows['id'] == '0') {
